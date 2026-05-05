@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkEye</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <header class="brand">
+          <div class="brand-mark">LE</div>
+          <div>
+            <h1>LinkEye</h1>
+            <p>Profile archive</p>
+          </div>
+        </header>
+
+        <form id="add-form" class="add-form">
+          <label for="profile-url">LinkedIn profile URL</label>
+          <input
+            id="profile-url"
+            name="url"
+            type="url"
+            autocomplete="off"
+            placeholder="https://www.linkedin.com/in/name/"
+            required
+          />
+          <label for="profile-label">Label</label>
+          <input id="profile-label" name="label" type="text" autocomplete="off" placeholder="Optional" />
+          <button id="add-button" type="submit">Save and capture</button>
+        </form>
+
+        <div class="search-block">
+          <label for="search">Search archive</label>
+          <input id="search" type="search" placeholder="Name, slug, or URL" />
+        </div>
+
+        <form id="discover-form" class="discover-form">
+          <label for="discover-query">Find public profiles</label>
+          <div class="inline-form">
+            <input id="discover-query" type="search" placeholder="Name or company" />
+            <button id="discover-button" class="secondary-button" type="submit">Find</button>
+          </div>
+          <div id="discover-results" class="discover-results hidden"></div>
+        </form>
+
+        <div class="sidebar-head">
+          <h2>Profiles</h2>
+          <span id="profile-count">0</span>
+        </div>
+        <div id="profiles" class="profiles"></div>
+      </aside>
+
+      <main class="workspace">
+        <nav class="topbar">
+          <div>
+            <p class="eyebrow">Daily public-profile monitor</p>
+            <h2 id="workspace-title">Archive</h2>
+          </div>
+          <button id="monitor-button" class="secondary-button" type="button">Run monitor</button>
+        </nav>
+
+        <section id="notice" class="notice hidden"></section>
+
+        <section id="empty-state" class="empty-state">
+          <div class="empty-visual">
+            <div class="scanline"></div>
+            <div class="profile-plate"></div>
+            <div class="profile-lines">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <h2>No profile selected</h2>
+          <p>Save a public profile to start the archive.</p>
+          <button id="sample-button" type="button">Add example profile</button>
+        </section>
+
+        <section id="profile-view" class="profile-view hidden">
+          <header class="profile-header">
+            <div class="avatar-wrap">
+              <img id="profile-image" alt="" class="avatar hidden" />
+              <div id="avatar-fallback" class="avatar-fallback">LE</div>
+            </div>
+            <div class="profile-title-block">
+              <div class="profile-title-row">
+                <h2 id="profile-name">Profile</h2>
+                <span id="profile-status" class="status-pill">active</span>
+              </div>
+              <p id="profile-headline" class="headline"></p>
+              <a id="profile-url-link" class="profile-link" href="#" target="_blank" rel="noreferrer"></a>
+            </div>
+            <div class="profile-actions">
+              <button id="capture-button" type="button">Capture now</button>
+              <button id="pause-button" class="secondary-button" type="button">Pause</button>
+              <button id="delete-button" class="danger-button" type="button">Delete</button>
+            </div>
+          </header>
+
+          <section class="metrics">
+            <article>
+              <span>Versions</span>
+              <strong id="metric-versions">0</strong>
+            </article>
+            <article>
+              <span>Last checked</span>
+              <strong id="metric-checked">Never</strong>
+            </article>
+            <article>
+              <span>Last changed</span>
+              <strong id="metric-changed">Never</strong>
+            </article>
+            <article>
+              <span>Status</span>
+              <strong id="metric-status">Ready</strong>
+            </article>
+          </section>
+
+          <section class="compare-panel">
+            <div class="section-head">
+              <h3>Compare versions</h3>
+              <button id="compare-button" class="secondary-button" type="button">Compare</button>
+            </div>
+            <div class="compare-selects">
+              <label>
+                From
+                <select id="from-version"></select>
+              </label>
+              <label>
+                To
+                <select id="to-version"></select>
+              </label>
+            </div>
+            <div id="diff-summary" class="diff-summary"></div>
+            <div id="field-diff" class="field-diff"></div>
+            <div id="text-diff" class="text-diff"></div>
+          </section>
+
+          <section class="version-panel">
+            <div class="section-head">
+              <h3>Version timeline</h3>
+              <span id="version-caption"></span>
+            </div>
+            <div id="versions" class="versions"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
